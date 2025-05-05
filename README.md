@@ -90,3 +90,38 @@ python pipeline_2.py --input_images_dir ./output/images \
 
 The script will process each image, apply the specified number of augmentations, save the results, and finally copy the original files to the output directories. Progress is shown using a progress bar.
 
+## Pipeline 3: Image Quantization and Filtering
+
+The `pipeline_3.py` script processes a dataset that has been split into `train`, `test`, and `val` sets. It filters images based on the presence of a specific class label (hardcoded as class ID 80 in the script), resizes the filtered images to a fixed height (640px) while maintaining aspect ratio, reduces their JPEG quality, and saves them along with their corresponding label files to a structured output directory.
+
+### Prerequisites
+
+-   Python 3.x
+-   Required Python libraries: `numpy`, `pandas`, `opencv-python`, `matplotlib`, `plotly` (Install using `pip install numpy pandas opencv-python matplotlib plotly`)
+-   A dataset split into `train`, `test`, and `val` subdirectories, each containing `images` and `labels` subdirectories (e.g., output from a dataset splitting tool). The labels should be in YOLO format.
+
+### Running the Script
+
+Execute the script from the command line, providing the paths to the split dataset and the desired output directory:
+
+```bash
+python pipeline_3.py --input_dir /path/to/split_dataset \
+                     --output_dir /path/to/quantized_output
+```
+
+### Arguments
+
+-   `--input_dir`: (Optional) Path to the base directory containing the split dataset (`train`, `test`, `val` folders). Defaults to `./split_dataset`.
+-   `--output_dir`: (Optional) Directory where the quantized and filtered output will be saved. Defaults to `./quantize/`. The script will create `train`, `test`, and `val` subdirectories within this output directory.
+
+### Example
+
+If your split dataset is in `./split_data` and you want to save the quantized output to `./quantized_data`:
+
+```bash
+python pipeline_3.py --input_dir ./split_data \
+                     --output_dir ./quantized_data
+```
+
+The script will process the `train`, `test`, and `val` sets, filter images containing class ID 80, resize and compress them, and save the results in `./quantized_data/train/images`, `./quantized_data/train/labels`, etc. It will print the input and output paths for each image being processed.
+
