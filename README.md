@@ -4,7 +4,7 @@ This repository contains scripts for processing the COCO dataset, specifically f
 
 ## Usage
 
-The `pipline_1.py` script filters images from the COCO dataset based on specified category limits and converts their annotations to the YOLO format. Filtered images are saved to a specified output directory, and corresponding YOLO annotation files (.txt) are saved to another specified directory.
+The `pipeline_1.py` script filters images from the COCO dataset based on specified category limits and converts their annotations to the YOLO format. Filtered images are saved to a specified output directory, and corresponding YOLO annotation files (.txt) are saved to another specified directory.
 
 ### Prerequisites
 
@@ -17,7 +17,7 @@ The `pipline_1.py` script filters images from the COCO dataset based on specifie
 Execute the script from the command line, providing the necessary paths as arguments:
 
 ```bash
-python pipline_1.py --image_path /path/to/coco/images \
+python pipeline_1.py --image_path /path/to/coco/images \
                     --annotation_path /path/to/coco/annotations \
                     --output_images ./filtered_images \
                     --output_labels ./filtered_labels
