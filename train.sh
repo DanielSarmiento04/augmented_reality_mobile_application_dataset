@@ -2,7 +2,7 @@
 
 # --- Default values ---
 DEFAULT_MODEL="yolov8n.pt" # Changed default to yolov8n as yolo11n is not standard
-DEFAULT_DATA="/content/data.yml"
+DEFAULT_DATA="./train/custom.yml"
 DEFAULT_EPOCHS=100
 DEFAULT_IMGSZ=640
 DEFAULT_DEVICE=0

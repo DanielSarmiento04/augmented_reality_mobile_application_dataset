@@ -185,3 +185,46 @@ To run with all default values:
 
 The script will print the parameters being used before starting the training process.
 
+## Pipeline 5: Model Export
+
+The `export.sh` script facilitates exporting a trained YOLOv8 model (e.g., from Pipeline 4) to the TFLite format, which is suitable for deployment on mobile devices. It includes Non-Maximum Suppression (NMS) in the exported graph and sets a default image size.
+
+### Prerequisites
+
+-   [Ultralytics YOLOv8](https://docs.ultralytics.com/) installed.
+-   A trained YOLOv8 model file (e.g., `best.pt` from the training output).
+
+### Running the Script
+
+Make the script executable first:
+
+```bash
+chmod +x export.sh
+```
+
+Execute the script from the command line, optionally providing the path to the model file:
+
+```bash
+./export.sh [model_path]
+```
+
+### Arguments (Positional)
+
+1.  `model_path`: (Optional) Path to the trained YOLOv8 model file (`.pt`). Defaults to `best.pt` in the current directory.
+
+### Example
+
+To export the default `best.pt` model located in the current directory:
+
+```bash
+./export.sh
+```
+
+To export a specific model, for example, located in the training results directory:
+
+```bash
+./export.sh runs/detect/train/weights/best.pt
+```
+
+The script will run the `yolo export` command with the specified (or default) model, setting the format to `tflite`, enabling `nms`, and using an image size of `640`. The exported TFLite model will typically be saved in the same directory as the input `.pt` file with a `_saved_model` suffix and then further converted within that subdirectory.
+
