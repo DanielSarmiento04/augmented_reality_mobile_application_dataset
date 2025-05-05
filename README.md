@@ -15,8 +15,13 @@ The `pipeline_1.py` script filters images from the COCO dataset based on specifi
 ### Prerequisites
 
 -   Python 3.x
--   Required Python libraries: `numpy`, `pandas`, `opencv-python`, `matplotlib` (Install using `pip install numpy pandas opencv-python matplotlib`)
--   COCO dataset images and annotation file (`instances_train2017.json` or similar).
+
+```sh
+conda create --name train_data  python=3.10 -y
+conda activate train_data
+
+pip install -r requirements.txt
+```
 
 ### Running the Script
 
