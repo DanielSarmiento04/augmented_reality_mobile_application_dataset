@@ -136,3 +136,52 @@ python pipeline_3.py --input_dir ./split_data \
 
 The script will process the `train`, `test`, and `val` sets, filter images containing class ID 80, resize and compress them, and save the results in `./quantized_data/train/images`, `./quantized_data/train/labels`, etc. It will print the input and output paths for each image being processed.
 
+## Pipeline 4: Model Training
+
+The `train.sh` script provides a convenient way to start YOLOv8 detection model training using specified parameters or defaults. It simplifies the command-line execution of the `yolo` training task.
+
+### Prerequisites
+
+-   [Ultralytics YOLOv8](https://docs.ultralytics.com/) installed.
+-   A prepared dataset with a corresponding `data.yml` file (e.g., the output from previous pipelines).
+-   (Optional) `wandb` account and logged in if you want to use Weights & Biases for tracking.
+
+### Running the Script
+
+Make the script executable first:
+
+```bash
+chmod +x train.sh
+```
+
+Execute the script from the command line, optionally providing arguments in the specified order:
+
+```bash
+./train.sh [model] [data_yaml] [epochs] [imgsz] [device] [batch]
+```
+
+### Arguments (Positional)
+
+1.  `model`: (Optional) The YOLO model to use for training (e.g., `yolov8n.pt`, `yolov8s.pt`). Defaults to `yolov8n.pt`.
+2.  `data_yaml`: (Optional) Path to the dataset configuration file (`.yml`). Defaults to `/content/data.yml`.
+3.  `epochs`: (Optional) Number of training epochs. Defaults to `100`.
+4.  `imgsz`: (Optional) Input image size for training. Defaults to `640`.
+5.  `device`: (Optional) Device to run training on (e.g., `0` for GPU 0, `cpu`). Defaults to `0`.
+6.  `batch`: (Optional) Batch size for training. `-1` for auto-batch. Defaults to `-1`.
+
+### Example
+
+To train a `yolov8s.pt` model using the dataset defined in `./quantized_data/data.yaml` for 50 epochs with an image size of 640 on GPU 0 and auto-batch size:
+
+```bash
+./train.sh yolov8s.pt ./quantized_data/data.yaml 50 640 0 -1
+```
+
+To run with all default values:
+
+```bash
+./train.sh
+```
+
+The script will print the parameters being used before starting the training process.
+
