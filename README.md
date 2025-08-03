@@ -138,11 +138,11 @@ The script will process the `train`, `test`, and `val` sets, filter images conta
 
 ## Pipeline 4: Model Training
 
-The `train.sh` script provides a convenient way to start YOLOv8 detection model training using specified parameters or defaults. It simplifies the command-line execution of the `yolo` training task.
+The `train.sh` script provides a convenient way to start YOLO detection model training using specified parameters or defaults. It simplifies the command-line execution of the `yolo` training task.
 
 ### Prerequisites
 
--   [Ultralytics YOLOv8](https://docs.ultralytics.com/) installed.
+-   [Ultralytics](https://docs.ultralytics.com/) installed.
 -   A prepared dataset with a corresponding `data.yml` file (e.g., the output from previous pipelines).
 -   (Optional) `wandb` account and logged in if you want to use Weights & Biases for tracking.
 
@@ -162,7 +162,7 @@ Execute the script from the command line, optionally providing arguments in the 
 
 ### Arguments (Positional)
 
-1.  `model`: (Optional) The YOLO model to use for training (e.g., `yolov8n.pt`, `yolov8s.pt`). Defaults to `yolov8n.pt`.
+1.  `model`: (Optional) The YOLO model to use for training (e.g., `yolov11n.pt`, `yolov11s.pt`). Defaults to `yolov11n.pt`.
 2.  `data_yaml`: (Optional) Path to the dataset configuration file (`.yml`). Defaults to `/content/data.yml`.
 3.  `epochs`: (Optional) Number of training epochs. Defaults to `100`.
 4.  `imgsz`: (Optional) Input image size for training. Defaults to `640`.
@@ -171,10 +171,10 @@ Execute the script from the command line, optionally providing arguments in the 
 
 ### Example
 
-To train a `yolov8s.pt` model using the dataset defined in `./quantized_data/data.yaml` for 50 epochs with an image size of 640 on GPU 0 and auto-batch size:
+To train a `yolov11s.pt` model using the dataset defined in `./quantized_data/data.yaml` for 50 epochs with an image size of 640 on GPU 0 and auto-batch size:
 
 ```bash
-./train.sh yolov8s.pt ./quantized_data/data.yaml 50 640 0 -1
+./train.sh yolov11s.pt ./quantized_data/data.yaml 50 640 0 -1
 ```
 
 To run with all default values:
@@ -187,12 +187,12 @@ The script will print the parameters being used before starting the training pro
 
 ## Pipeline 5: Model Export
 
-The `export.sh` script facilitates exporting a trained YOLOv8 model (e.g., from Pipeline 4) to the TFLite format, which is suitable for deployment on mobile devices. It includes Non-Maximum Suppression (NMS) in the exported graph and sets a default image size.
+The `export.sh` script facilitates exporting a trained yolov11 model (e.g., from Pipeline 4) to the TFLite format, which is suitable for deployment on mobile devices. It includes Non-Maximum Suppression (NMS) in the exported graph and sets a default image size.
 
 ### Prerequisites
 
--   [Ultralytics YOLOv8](https://docs.ultralytics.com/) installed.
--   A trained YOLOv8 model file (e.g., `best.pt` from the training output).
+-   [Ultralytics yolov11](https://docs.ultralytics.com/) installed.
+-   A trained yolov11 model file (e.g., `best.pt` from the training output).
 
 ### Running the Script
 
@@ -210,7 +210,7 @@ Execute the script from the command line, optionally providing the path to the m
 
 ### Arguments (Positional)
 
-1.  `model_path`: (Optional) Path to the trained YOLOv8 model file (`.pt`). Defaults to `best.pt` in the current directory.
+1.  `model_path`: (Optional) Path to the trained yolov11 model file (`.pt`). Defaults to `best.pt` in the current directory.
 
 ### Example
 
